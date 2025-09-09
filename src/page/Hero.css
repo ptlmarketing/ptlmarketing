@@ -1,0 +1,85 @@
+.hero {
+  position: relative;
+}
+
+/* ensure background sits behind dots and content */
+.hero-bg {
+  z-index: 10;
+}
+
+/* overlay for stars */
+.stars-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+}
+
+/* single star */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 4px rgba(255,255,255,0.6);
+  transform-origin: center;
+  will-change: opacity, transform;
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* some stars with extra glow */
+.star--glow {
+  box-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 16px rgba(249,115,22,0.12);
+}
+
+/* twinkle keyframes */
+@keyframes twinkle {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.8);
+    filter: blur(0px);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.6);
+    filter: blur(0.5px);
+  }
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* optional: slightly dim the background so stars stand out on bright images */
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.12);
+}
+
+
+.outline-number {
+  color: transparent;
+  -webkit-text-stroke: 2px #F97316;
+  /* text-stroke: 2px #F97316; */
+  text-shadow: 0 4px 6px rgba(226, 212, 212, 0.4); /* bottom shadow */
+}
+
+@keyframes rocketMove {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(-50px); /* upar jayega */
+  }
+  100% {
+    transform: translateY(-10px); /* wapas niche */
+  }
+}
+
+.animate-rocket {
+  animation: rocketMove 4s ease-in-out infinite;
+}
+
