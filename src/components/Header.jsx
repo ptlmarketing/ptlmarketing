@@ -18,6 +18,7 @@ const Navbar = () => {
     { name: "About", to: "/about" },
     { name: "Services", to: "/services" },
     { name: "Blog", to: "/blog" },
+    { name: "FAQ", to: "/faq" },
     { name: "Contact", to: "/contact" },
   ];
 
@@ -81,9 +82,9 @@ const Navbar = () => {
                         isActive ? "text-[#F97316]" : "text-white"
                       }`
                     }
-                    variants={item}
-                    whileHover={{ scale: 1.1, color: "#F97316" }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    // variants={item}
+                    // whileHover={{ scale: 1.1, color: "#F97316" }}
+                    // transition={{ type: "spring", stiffness: 300 }}
                   >
                     {link.name}
                   </MotionLink>

@@ -2,6 +2,7 @@ import React from "react";
 
 function ServiceCardOnHome({ data }) {
   const { icon: Icon, heading, paragraph } = data;
+  console.log(data)
 
   return (
     <div className={` ${heading=="Meta & Google Ads"?"mt-42":""} ${heading=="SEO Optimization"?"mt-20":""} ${heading=="Brand Strategy"?"mt-20":""} ${heading=="Influencer Marketing"?"mt-42":""}`}>

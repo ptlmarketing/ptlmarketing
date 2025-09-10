@@ -3,7 +3,7 @@ import GetQuotationButton from "./GetQuotationButton";
 
 function Card({ image, heading, paragraph }) {
   return (
-    <div className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-500 hover:border hover:border-[#F97316]">
+    <div className="max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden  hover:scale-105 transition-transform duration-500 hover:border hover:border-[#F97316]">
       {/* Image */}
       <img src={image} alt={heading} className="w-full h-56 object-cover" />
 
