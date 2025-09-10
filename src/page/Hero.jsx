@@ -403,8 +403,8 @@ function Hero() {
   </div>
 
   {/* Right: Heading + Paragraph + Button */}
-  <div className="order-1 md:order-2 space-y-6">
-    <h1 className="text-3xl lg:text-4xl font-bold text">
+  <div className="order-1 md:order-2 space-y-6" data-aos="fade-left">
+    <h1 className="text-3xl lg:text-4xl font-bold text" >
       Frequently Asked Questions
     </h1>
     <p className="text-gray-600 leading-relaxed">

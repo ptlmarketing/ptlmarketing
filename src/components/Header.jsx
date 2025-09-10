@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ const MotionLink = motion(Link); // wrap Link with motion
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [slideIsOpen, setSlideIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
     { name: "Home", to: "/" },
@@ -33,11 +34,24 @@ const Navbar = () => {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
-      <header className="fixed top-5 left-0 w-full z-50">
-        <div className="md:w-[1280px] mx-auto px-4 backdrop-blur-xl text-white shadow-lg rounded-full">
+      <header className={`fixed top-5 left-0 w-full z-50`}>
+        <div className={`md:w-[1280px] mx-auto px-4 backdrop-blur-xl text-white shadow-lg rounded-full transition-colors duration-500 ${
+          isScrolled ? "bg-black/65 shadow-lg py-2" : "bg-transparent"}`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               {/* Logo */}
