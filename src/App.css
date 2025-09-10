@@ -27,3 +27,9 @@ body{
 .bg-color{
     background-color: #FAF1E8;
 }
+.bg{
+    background-color: #F97316;
+}
+.swiper-button-next,.swiper-button-prev{
+    display: none !important;
+}

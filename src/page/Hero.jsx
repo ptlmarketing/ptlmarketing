@@ -1,4 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { motion } from "framer-motion";
 import heroBanner from "../assets/background banner image.png";
 import heroSectionImage from "../assets/heroSetionImage.webp";
@@ -13,12 +15,18 @@ import About from "../components/About";
 import aboutImage from "../assets/circle image.png";
 import GetQuotationButton from "../components/GetQuotationButton";
 import ServiceCardOnHone from "../components/ServiceCardOnHone";
-import { servicesDataOnHome } from "./AllServicesDataHere";
+import { projectProfileData, servicesDataOnHome } from "./AllServicesDataHere";
 import backgroundImageOverlay from "../assets/backgroundOverlayimage.png";
 import cloudImage from "../assets/cloud effect.PNG";
 import rocketImage from "../assets/rocket.png";
+import Card from "../components/Card";
+import Testimonial from "../components/Testimonial";
+import Faq from "../components/Faq";
 
 function Hero() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true, easing: "ease-in-out" });
+  }, []);
   // generate random blinking dots
   const stars = useMemo(() => {
     return Array.from({ length: 80 }).map((_, i) => ({
@@ -289,15 +297,25 @@ function Hero() {
         >
           <div className="px-6 py-12 min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#0c0101de]  to-[rgb(56,24,2)] relative">
             <div className="flex flex-col justify-center items-center py-5">
-              <h1 className="text-center text text-xl">Our Services</h1>
-              <h1 className="text-white text-4xl text-center w-[70%] py-8 font-[600]">
+              <h1 className="text-center text text-xl" data-aos="fade-up">
+                Our Services
+              </h1>
+              <h1
+                className="text-white text-4xl text-center w-[70%] py-8 font-[600]"
+                data-aos="fade-up"
+                data-aos-delay={250}
+              >
                 Our Services We provide a complete range of digital solutions to
                 help your business grow online
               </h1>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {servicesDataOnHome.map((item, index) => {
-                return <ServiceCardOnHone data={item} key={index} />;
+                return (
+                  <div data-aos="fade-up" data-aos-delay={index * 250}>
+                    <ServiceCardOnHone data={item} key={index} />
+                  </div>
+                );
               })}
             </div>
             <img
@@ -311,6 +329,94 @@ function Hero() {
           <img src={cloudImage} alt="" className="w-full" />
         </div>
       </div>
+
+      {/* Our Project Section Statr here */}
+      <div className="px-5 lg:px-20 py-10">
+        {/* Heading Section */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <h1
+            className="text-3xl md:text-4xl font-bold text-gray-900"
+            data-aos="fade-up"
+          >
+            Build Your Digital Success Story
+          </h1>
+          <p
+            className="text-gray-600 mt-4"
+            data-aos="fade-up"
+            data-aos-delay={250}
+          >
+            Take your brand to new heights with our expert web solutions,
+            powerful marketing strategies, and state-of-the-art technology.
+          </p>
+        </div>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Cards Grid */}
+          {projectProfileData.map((item, index) => (
+            <div
+              key={index}
+              data-aos="fade-up"
+              data-aos-delay={index * 250} // delay each card by 150ms
+            >
+              <Card
+                image={item.image}
+                heading={item.Heading}
+                paragraph={item.paragraph}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Testimonial Section Start Here */}
+      <div className=" grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 lg:px-20 py-16 bg-color">
+        {/* Left Column - Text Content */}
+        <div data-aos="fade-right">
+          <h1 className="text-3xl md:text-4xl font-bold text mb-4">
+            What Our Clients Say
+          </h1>
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            Our clients trust us because we deliver measurable results and
+            creative solutions that help their businesses grow. From boosting
+            online visibility and generating qualified leads to building strong
+            brand identities, we’ve partnered with companies across diverse
+            industries to achieve real success. Their words of appreciation
+            inspire us to keep innovating and delivering excellence every step
+            of the way.
+          </p>
+          <GetQuotationButton title="Get Quotation" />
+        </div>
+
+        {/* Right Column - Testimonial Carousel/Component */}
+        <div data-aos="fade-left">
+          <p className="text mb-8 text-lg">Testimonials</p>
+          <Testimonial />
+        </div>
+      </div>
+
+      {/* FAQ Section Start Here */}
+<div className="min-h-[70vh] grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 lg:px-20 py-16 bg-color">
+  {/* Left: FAQ Accordion */}
+  <div className="order-2 md:order-1">
+    <Faq />
+  </div>
+
+  {/* Right: Heading + Paragraph + Button */}
+  <div className="order-1 md:order-2 space-y-6">
+    <h1 className="text-3xl lg:text-4xl font-bold text">
+      Frequently Asked Questions
+    </h1>
+    <p className="text-gray-600 leading-relaxed">
+      We understand you may have questions before getting started, which is why we’ve put together 
+      answers to some of the most common queries our clients ask. From our services, process, and 
+      timelines to how digital marketing, SEO, ads, and social media campaigns work, this section is 
+      designed to give you quick clarity and confidence in choosing us as your digital partner.
+    </p>
+    <GetQuotationButton title="Get Quotation" />
+  </div>
+</div>
+
     </>
   );
 }
