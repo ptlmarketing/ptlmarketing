@@ -40,17 +40,12 @@ function OurServices() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-2.5 md:px-20 py-12 bg-color">
-        {ourServices.map((item, index) => {
-          return (
-            <div key={index}
-            data-aos="fade-up"
-            data-aos-delay={index * 250}
-            >
-              <ServiceCard data={item} />
-            </div>
-          );
-        })}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-2.5 md:px-20 py-12 bg-color justify-items-center">
+        {ourServices.map((item, index) => (
+          <div key={index} data-aos="fade-up" data-aos-delay={index * 250}>
+            <ServiceCard data={item} />
+          </div>
+        ))}
       </div>
     </div>
   );
