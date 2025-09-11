@@ -1,50 +1,37 @@
 import React from "react";
 
 function Users() {
+  const cards = Array.from({ length: 20 }, (_, i) => ({
+    id: i + 1,
+    title: `Card Title ${i + 1}`,
+    description: `This is a description for card ${i + 1}.`,
+    image: `https://picsum.photos/300/200?random=${i + 1}`,
+  }));
+
   return (
     <div className="p-4">
-      {/* Responsive Wrapper */}
-      <div className="overflow-x-auto shadow-md rounded-lg">
-        <table className="min-w-[800px] table-auto border-collapse border border-gray-300">
-          <thead className="bg-gray-500 text-white">
-            <tr>
-              <th className="px-4 py-2 border">Song</th>
-              <th className="px-4 py-2 border">Artist</th>
-              <th className="px-4 py-2 border">Year</th>
-              <th className="px-4 py-2 border">Album</th>
-              <th className="px-4 py-2 border">Genre</th>
-              <th className="px-4 py-2 border">Duration</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="hover:bg-gray-50">
-              <td className="px-4 py-2 border">
-                The Sliding Mr. Bones (Next Stop, Pottersville)
-              </td>
-              <td className="px-4 py-2 border">Malcolm Lockyer</td>
-              <td className="px-4 py-2 border">1961</td>
-              <td className="px-4 py-2 border">Bones Album</td>
-              <td className="px-4 py-2 border">Jazz</td>
-              <td className="px-4 py-2 border">3:45</td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="px-4 py-2 border">Witchy Woman</td>
-              <td className="px-4 py-2 border">The Eagles</td>
-              <td className="px-4 py-2 border">1972</td>
-              <td className="px-4 py-2 border">Eagles Album</td>
-              <td className="px-4 py-2 border">Rock</td>
-              <td className="px-4 py-2 border">4:10</td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="px-4 py-2 border">Shining Star</td>
-              <td className="px-4 py-2 border">Earth, Wind, and Fire</td>
-              <td className="px-4 py-2 border">1975</td>
-              <td className="px-4 py-2 border">Star Album</td>
-              <td className="px-4 py-2 border">Funk</td>
-              <td className="px-4 py-2 border">5:00</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">
+        20 Sample Cards
+      </h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {cards.map((card) => (
+          <div
+            key={card.id}
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
+            <img src={card.image} alt={card.title} className="w-full h-40 object-cover" />
+            <div className="p-4">
+              <h3 className="font-semibold text-lg text-gray-800 dark:text-white">
+                {card.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">{card.description}</p>
+              <button className="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors duration-300">
+                Explore
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
