@@ -105,7 +105,7 @@ function Hero() {
 
   return (
     <>
-      <section className="hero relative h-screen overflow-hidden">
+      <section className="hero relative md:h-screen overflow-hidden">
         {/* Background */}
         <div
           className="absolute inset-0"
