@@ -56,7 +56,7 @@ function About() {
             src={aboutUsImage}
             alt="About PTL Marketing"
             className="rounded-2xl w-full"
-            data-aos="fade-right"
+            data-aos="fade-up"
           />
         </div>
 
