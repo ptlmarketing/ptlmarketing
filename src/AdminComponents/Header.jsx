@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa";
 export default function Header({ toggleSidebar }) {
   return (
    <div className="p-3">
-     <header className="flex items-center justify-between px-4 py-3 bg-white dark:bg-[#212121] shadow shadow-white rounded-xl">
+     <header className="flex  items-center justify-between px-4 py-3 bg-white dark:bg-[#212121] shadow shadow-white rounded-xl">
        <button onClick={toggleSidebar} className="text-xl md:block hidden text-white cursor-pointer">
         <FaBars />
       </button>
