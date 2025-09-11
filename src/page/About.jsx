@@ -21,7 +21,7 @@ function About() {
   return (
     <>
       <div
-        className="relative min-h-screen flex items-center justify-center text-center px-6"
+        className="relative h-[70vh] md:min-h-screen flex items-center justify-center text-center px-6"
         style={{
           backgroundImage: `url(${aboutBackgroundImage})`,
           backgroundRepeat: "no-repeat",
@@ -62,18 +62,18 @@ function About() {
 
         {/* Right Side - Content */}
         <div className="space-y-6">
-          <p className="text-[#F97316] font-semibold" data-aos="fade-up">
+          <p className="text-[#F97316] font-semibold text-center" data-aos="fade-up">
             About Us
           </p>
           <h1
-            className="text-4xl md:text-5xl font-bold text-gray-800"
+            className="text-3xl md:text-5xl font-bold text-gray-800 text-center"
             data-aos="fade-up"
             data-aos-delay="300"
           >
             PTL Marketing
           </h1>
           <p
-            className="text-gray-600 leading-relaxed"
+            className="text-gray-600 leading-relaxed text-justify md:text-left"
             data-aos="fade-up"
             data-aos-delay="500"
           >
@@ -148,7 +148,7 @@ function About() {
             backgroundSize: "cover",
           }}
         >
-          <div className="px-20 py-12 min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#0c0101de]  to-[rgb(56,24,2)] relative">
+          <div className=" px-2.5 md:px-20 py-12 min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-[#0c0101de]  to-[rgb(56,24,2)] relative">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center items-center py-5 ">
               {aboutMissionSection.map((item, index) => {
                 return (
@@ -219,6 +219,7 @@ function About() {
           })}
         </div>
       </div>
+      
     </>
   );
 }
