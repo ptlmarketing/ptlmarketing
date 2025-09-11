@@ -8,8 +8,8 @@ function About({ image, heading, paragraph1, paragraph2, paragraph3, uspList, bu
       {/* Left Column: Image */}
       <motion.div
         className="flex justify-center"
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: -100 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.3 }}
       >
@@ -23,8 +23,8 @@ function About({ image, heading, paragraph1, paragraph2, paragraph3, uspList, bu
       {/* Right Column: Content */}
       <motion.div
         className="space-y-4"
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         viewport={{ once: true, amount: 0.3 }}
       >
