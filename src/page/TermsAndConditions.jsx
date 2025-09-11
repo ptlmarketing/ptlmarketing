@@ -9,7 +9,7 @@ function TermsAndConditions() {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-4xl mx-auto p-6 bg-gray-200 mt-4 rounded-xl shadow-xl text-gray-800 leading-relaxed">
+      <div className="max-w-4xl md:mx-auto p-6 mx-2.5 bg-gray-200 mt-4 rounded-xl shadow-xl text-gray-800 leading-relaxed">
         <p className="mb-4">
           Welcome to <span className="font-semibold">PTL Marketing</span>. By
           accessing and using our website, services, or applications, you agree

@@ -7,7 +7,7 @@ function PrivacyPolicy() {
       <div className="h-[250px] bg-gray-800 flex justify-center items-end text-white text-4xl">
         <h1 className="font-bold mb-6 text-center">Privacy Policy</h1>
       </div>
-      <div className="max-w-4xl mx-auto p-6 bg-gray-200 mt-4 rounded-xl shadow-xl text-gray-800 leading-relaxed">
+      <div className="max-w-4xl md:mx-auto p-6 mx-2.5 bg-gray-200 mt-4 rounded-xl shadow-xl text-gray-800 leading-relaxed">
                <p className="mb-4">
           At <strong>PTL Marketing</strong>, we are committed to protecting your
           privacy. This Privacy Policy explains how we collect, use, and
