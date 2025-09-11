@@ -29,7 +29,7 @@ function About({ image, heading, paragraph1, paragraph2, paragraph3, uspList, bu
         viewport={{ once: true, amount: 0.3 }}
       >
         <motion.p
-          className="text-xl font-thin text"
+          className="text-xl font-thin text text-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -39,7 +39,7 @@ function About({ image, heading, paragraph1, paragraph2, paragraph3, uspList, bu
         </motion.p>
 
         <motion.p
-          className="font-semibold text-4xl text-black"
+          className="font-semibold text-3xl md:text-4xl text-black text-center"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}

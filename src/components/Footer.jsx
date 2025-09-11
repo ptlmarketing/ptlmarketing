@@ -24,38 +24,37 @@ function Footer() {
             paid campaigns. Your trusted partner for online success.
           </p>
           <div className="flex space-x-4 mt-3">
-            {/* External social media links (still <a>) */}
             <a
-              href="https://facebook.com"
+              href="https://facebook.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-[#F97316] transition border p-2 rounded"
             >
-              <FaFacebookF size={18} />
+              <FaFacebookF className="text-gray-400" size={18} />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://twitter.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-[#F97316] transition border p-2 rounded"
             >
-              <FaTwitter size={18} />
+              <FaTwitter className="text-gray-400" size={18} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-[#F97316] transition border p-2 rounded"
             >
-              <FaLinkedinIn size={18} />
+              <FaLinkedinIn className="text-gray-400" size={18} />
             </a>
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-[#F97316] transition border p-2 rounded"
             >
-              <FaInstagram size={18} />
+              <FaInstagram className="text-gray-400" size={18} />
             </a>
           </div>
         </div>
@@ -100,7 +99,7 @@ function Footer() {
           <h2 className="text-xl font-semibold text-white mb-4">Quick Links</h2>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link to="/support" className="hover:text-[#F97316] transition">
+              <Link to="/contact" className="hover:text-[#F97316] transition">
                 Support
               </Link>
             </li>
@@ -113,7 +112,10 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/terms" className="hover:text-[#F97316] transition">
+              <Link
+                to="/terms-and-conditions"
+                className="hover:text-[#F97316] transition"
+              >
                 Terms & Conditions
               </Link>
             </li>

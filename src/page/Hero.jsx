@@ -14,7 +14,7 @@ import connection from "../assets/connection.png";
 import About from "../components/About";
 import aboutImage from "../assets/circle image.png";
 import GetQuotationButton from "../components/GetQuotationButton";
-import ServiceCardOnHone from "../components/ServiceCardOnHone";
+import ServiceCardOnHone from "../components/ServiceCardOnHome";
 import { projectProfileData, servicesDataOnHome } from "./AllServicesDataHere";
 import backgroundImageOverlay from "../assets/backgroundOverlayimage.png";
 import cloudImage from "../assets/cloud effect.PNG";
@@ -146,11 +146,11 @@ function Hero() {
           {/* Left Section */}
           <motion.div
             variants={fadeInUp}
-            className="text-center md:text-left  space-y-6 flex flex-col justify-center"
+            className="text-center pt-32 md:text-left  space-y-6 flex flex-col justify-center"
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-5xl font-extrabold leading-tight"
+              className="text-3xl md:text-5xl font-extrabold leading-tight"
             >
               Grow Your Business <br /> with{" "}
               <span className="text-[#F97316]">PTL Marketing</span>
@@ -192,7 +192,7 @@ function Hero() {
             <motion.img
               src={heroSectionImage}
               alt="PTL Hero"
-              className="w-[70%] md:w-[400px] mx-auto drop-shadow-2xl"
+              className="w-[50%] md:w-[400px] mx-auto drop-shadow-2xl"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
@@ -201,7 +201,7 @@ function Hero() {
         </motion.div>
       </section>
 
-      {/* How it work Section Statr Herre*/}
+      {/* How it work Section Statr Here*/}
 
       <div className="bg-color min-h-screen text-center py-10 flex flex-col justify-center items-center">
         <div>
@@ -217,7 +217,7 @@ function Hero() {
             How it work{" "}
           </motion.p>
           <motion.h1
-            className="text-5xl pt-2 font-bold"
+            className="text-3xl md:text-5xl pt-2 font-bold"
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
@@ -231,7 +231,7 @@ function Hero() {
           <div className=" mx-auto px-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {steps.map((step, index) => (
               <motion.div
-                key={step.id}
+                key={index}
                 className=" rounded-xl flex flex-col items-center text-center hover:scale-105 transition-transform duration-300"
                 variants={cardVariants}
                 initial="hidden"
@@ -262,7 +262,7 @@ function Hero() {
                 </p>
 
                 {/* Heading */}
-                <h3 className="text-xl ">{step.heading}</h3>
+                <h3 className="md:text-xl ">{step.heading}</h3>
               </motion.div>
             ))}
           </div>
@@ -286,6 +286,7 @@ function Hero() {
         buttonText="Get Quotation"
       />
 
+
       {/* Our Servicese Section Start Here */}
       <div>
         <div
@@ -301,7 +302,7 @@ function Hero() {
                 Our Services
               </h1>
               <h1
-                className="text-white text-4xl text-center w-[70%] py-8 font-[600]"
+                className="text-white text-3xl md:text-4xl text-center md:w-[70%] py-8 font-[600]"
                 data-aos="fade-up"
                 data-aos-delay={250}
               >
@@ -312,8 +313,8 @@ function Hero() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {servicesDataOnHome.map((item, index) => {
                 return (
-                  <div data-aos="fade-up" data-aos-delay={index * 250}>
-                    <ServiceCardOnHone data={item} key={index} />
+                  <div key={index}  data-aos="fade-up" data-aos-delay={index * 250}>
+                    <ServiceCardOnHone data={item} />
                   </div>
                 );
               })}
@@ -321,7 +322,7 @@ function Hero() {
             <img
               src={rocketImage}
               alt="Rocket"
-              className="w-[8%] absolute -bottom-[10px] animate-rocket"
+              className="w-[30%] md:w-[8%] md:absolute -bottom-[10px] animate-rocket pt-20 md:pt-0"
             />
           </div>
         </div>
@@ -373,7 +374,7 @@ function Hero() {
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 lg:px-20 py-16 bg-color">
         {/* Left Column - Text Content */}
         <div data-aos="fade-right">
-          <h1 className="text-3xl md:text-4xl font-bold text mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text mb-4 text-center">
             What Our Clients Say
           </h1>
           <p className="text-gray-600 mb-6 leading-relaxed">
@@ -390,7 +391,7 @@ function Hero() {
 
         {/* Right Column - Testimonial Carousel/Component */}
         <div data-aos="fade-left">
-          <p className="text mb-8 text-lg">Testimonials</p>
+          <p className="text mb-8 text-lg text-center">Testimonials</p>
           <Testimonial />
         </div>
       </div>
@@ -404,7 +405,7 @@ function Hero() {
 
   {/* Right: Heading + Paragraph + Button */}
   <div className="order-1 md:order-2 space-y-6" data-aos="fade-left">
-    <h1 className="text-3xl lg:text-4xl font-bold text" >
+    <h1 className="text-3xl lg:text-4xl font-bold text text-center" >
       Frequently Asked Questions
     </h1>
     <p className="text-gray-600 leading-relaxed">

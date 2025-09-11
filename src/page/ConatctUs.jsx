@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
-import conatcUsImage from '../assets/contactUs.png'
+import React, { useEffect } from "react";
+import conatcUsImage from "../assets/contactUs.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { FaPhoneAlt ,FaMapMarkerAlt} from "react-icons/fa";
+import { FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { HiBuildingOffice2 } from "react-icons/hi2";
+import EnquiryForm from "../components/EnqueryForm";
+import imageSideBar from "../assets/women-slider-img-web.webp";
 
 function ConatctUs() {
-useEffect(() => {
+  useEffect(() => {
     AOS.init({ duration: 1000, once: true }); // animate once
   }, []);
 
@@ -32,8 +34,8 @@ useEffect(() => {
   ];
 
   return (
-  <>
-   <div
+    <>
+      <div
         className="relative min-h-screen flex items-center justify-center text-center px-6"
         style={{
           backgroundImage: `url(${conatcUsImage})`,
@@ -48,40 +50,68 @@ useEffect(() => {
         {/* Content */}
         <div className="relative z-10 max-w-3xl text-white space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold" data-aos="fade-up">
-            Get in  <span className="text-[#F97316]">Touch</span>
+            Get in <span className="text-[#F97316]">Touch</span>
           </h1>
           <p
             className="text-lg md:text-xl leading-relaxed"
             data-aos="fade-up"
             data-aos-delay="500"
           >
-           Have a project in mind or simply want to know more about how we can help your business grow? Drop us a message—we’re always happy to connect and guide you in the right direction.
+            Have a project in mind or simply want to know more about how we can
+            help your business grow? Drop us a message—we’re always happy to
+            connect and guide you in the right direction.
           </p>
         </div>
-        <div className='bg-color'>
+        <div className="bg-color"></div>
+      </div>
 
+      <div className="bg-color py-20 px-12">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {contacts.map((contact, index) => (
+            <div
+              key={index}
+              className="bg-[#d8d8d8] shadow-lg rounded-2xl p-8 flex flex-col items-center text-center hover:shadow-xl transition"
+            >
+              <div className="mb-4 bg p-7 rounded-full -mt-20">
+                {contact.icon}
+              </div>
+              <h3 className="text-xl font-semibold text-black mb-2">
+                {contact.title}
+              </h3>
+              <p className="text-teal-600 font-medium">{contact.info}</p>
+              <p className="text-gray-900 mt-2">{contact.desc}</p>
+            </div>
+          ))}
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 px-20 py-6 bg-color justify-center items-center">
+        <div>
+          <EnquiryForm />
+        </div>
+        <div>
+          <img src={imageSideBar} alt="" className="w-[90%]" />
+        </div>
+      </div>
+
+      <div>
         
-      </div>
-        <div className="bg-color py-20 px-12">
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {contacts.map((contact, index) => (
-          <div
-            key={index}
-            className="bg-[#d8d8d8] shadow-lg rounded-2xl p-8 flex flex-col items-center text-center hover:shadow-xl transition"
-          >
-            <div className="mb-4 bg p-7 rounded-full -mt-20">{contact.icon}</div>
-            <h3 className="text-xl font-semibold text-black mb-2">
-              {contact.title}
-            </h3>
-            <p className="text-teal-600 font-medium">{contact.info}</p>
-            <p className="text-gray-600 mt-2">{contact.desc}</p>
-          </div>
-        ))}
-      </div>
+
+
+    <div className="w-full h-[450px]  overflow-hidden shadow-lg">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.2212739309627!2d77.1582797!3d28.6814022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d026caaaaaaaa%3A0x123456789abcdef!2s3810%2F5%20Kanhaiya%20Nagar%2C%20Delhi%20110052!5e0!3m2!1sen!2sin!4v1694444444444!5m2!1sen!2sin"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      ></iframe>
     </div>
-  </>
-  )
+      </div>
+    </>
+  );
 }
 
-export default ConatctUs
+export default ConatctUs;

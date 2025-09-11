@@ -10,6 +10,9 @@ import Blog from './page/blogs/Blog.jsx'
 import BlogDetails from './page/blogs/BlogDetails.jsx'
 import FAQ from './page/FAQ.jsx'
 import ConatctUs from './page/ConatctUs.jsx'
+import Testimonials from './page/Testimonials.jsx'
+import PrivacyPolicy from './page/PrivacyPolicy.jsx'
+import TermsAndConditions from './page/TermsAndConditions.jsx'
 
 
 const router=createBrowserRouter(
@@ -22,6 +25,9 @@ const router=createBrowserRouter(
       <Route path="/blog/:id" element={<BlogDetails />} />
       <Route path='/faq' element={<FAQ/>}/>
       <Route path='/contact' element={<ConatctUs/>}/>
+      <Route path='/testimonial' element={<Testimonials/>}/>
+      <Route path='/privacy-policy' element={<PrivacyPolicy/>}/>
+      <Route path='/terms-and-conditions' element={<TermsAndConditions/>}/>
 
     </Route>
   )

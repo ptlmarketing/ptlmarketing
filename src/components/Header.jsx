@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import logo from "../assets/PTL Marketing logo.png";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import GetQuotationButton from "./GetQuotationButton";
+import EnquiryForm from "./EnqueryForm";
 
-const MotionLink = motion(Link); // wrap Link with motion
+const MotionLink = motion.create(Link); // wrap Link with motion
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [slideIsOpen, setSlideIsOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
     { name: "Home", to: "/" },
@@ -51,8 +52,11 @@ const Navbar = () => {
   return (
     <>
       <header className={`fixed top-5 left-0 w-full z-50`}>
-        <div className={`md:w-[1280px] mx-auto px-4 backdrop-blur-xl text-white shadow-lg rounded-full transition-colors duration-500 ${
-          isScrolled ? "bg-black/65 shadow-lg py-2" : "bg-transparent"}`}>
+        <div
+          className={`md:w-[1280px] mx-auto px-4 backdrop-blur-xl text-white shadow-lg rounded-full transition-colors duration-500 ${
+            isScrolled ? "bg-black/65 shadow-lg py-2" : "bg-transparent"
+          }`}
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               {/* Logo */}
@@ -74,20 +78,14 @@ const Navbar = () => {
                 animate="visible"
               >
                 {navLinks.map((link, i) => (
-                  <MotionLink
-                    key={i}
-                    to={link.to}
-                    className={({ isActive }) =>
-                      `relative text-lg font-medium pb-1 transition-colors duration-300 ${
-                        isActive ? "text-[#F97316]" : "text-white"
-                      }`
-                    }
-                    // variants={item}
-                    // whileHover={{ scale: 1.1, color: "#F97316" }}
-                    // transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {link.name}
-                  </MotionLink>
+                  <motion.div key={i} variants={item}>
+                    <Link
+                      to={link.to}
+                      className="relative text-lg font-medium pb-1 text-white transition-colors duration-300 hover:text-[#F97316]"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
                 ))}
               </motion.nav>
 
@@ -100,7 +98,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5 }}
                 >
-                 <GetQuotationButton title=" Get Quotation"/>
+                  <GetQuotationButton title=" Get Quotation" />
                 </motion.div>
 
                 {/* Desktop Slide Menu Button */}
@@ -141,7 +139,7 @@ const Navbar = () => {
               ))}
 
               {/* Mobile button */}
-            <GetQuotationButton title="Get Quotation"/>
+              <GetQuotationButton title="Get Quotation" />
             </motion.div>
           )}
         </div>
@@ -161,22 +159,23 @@ const Navbar = () => {
 
           {/* Slide panel */}
           <motion.div
-            className="fixed top-0 right-0 w-80 h-full bg-white z-50 shadow-lg p-6 flex flex-col"
+            className="fixed top-0 right-0 w-80 h-screen bg-white z-50 shadow-lg flex flex-col overflow-y-auto [&::-webkit-scrollbar]:hidden"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.4 }}
           >
             <button
-              className="self-end text-2xl mb-4"
+              className="self-start text-2xl mt-2 ml-2"
               onClick={() => setSlideIsOpen(false)}
             >
               <FaTimes />
             </button>
 
-       
-
-            
+            {/* Form container */}
+            <div className="flex-1">
+              <EnquiryForm />
+            </div>
           </motion.div>
         </>
       )}

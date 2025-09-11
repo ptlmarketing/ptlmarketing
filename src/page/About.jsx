@@ -7,7 +7,7 @@ import { BsWechat } from "react-icons/bs";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import backgroundImageOverlay from "../assets/backgroundOverlayimage.png";
-import ServiceCardOnHome from "../components/ServiceCardOnHone";
+import ServiceCardOnHome from "../components/ServiceCardOnHome";
 import {
   aboutMissionSection,
   ourProcessStepByStep,
