@@ -49,7 +49,7 @@ function About({ image, heading, paragraph1, paragraph2, paragraph3, uspList, bu
         </motion.p>
 
         <motion.p
-          className="text-gray-600"
+          className="text-gray-600 text-justify md:text-left"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
