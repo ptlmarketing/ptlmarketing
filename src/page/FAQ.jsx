@@ -11,7 +11,7 @@ function FAQ() {
   return (
     <div>
       <div
-        className="relative min-h-screen flex items-center justify-center text-center px-6"
+        className="relative h-[70vh] md:min-h-screen flex items-center justify-center text-center px-6"
         style={{
           backgroundImage: `url(${faqImage})`,
           backgroundRepeat: "no-repeat",

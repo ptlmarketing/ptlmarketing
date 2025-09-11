@@ -36,7 +36,7 @@ function ConatctUs() {
   return (
     <>
       <div
-        className="relative min-h-screen flex items-center justify-center text-center px-6"
+        className="relative h-[70vh] md:min-h-screen flex items-center justify-center text-center px-6"
         style={{
           backgroundImage: `url(${conatcUsImage})`,
           backgroundRepeat: "no-repeat",
@@ -65,12 +65,12 @@ function ConatctUs() {
         <div className="bg-color"></div>
       </div>
 
-      <div className="bg-color py-20 px-12">
+      <div className="bg-color px-2.5 py-20 md:px-12">
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {contacts.map((contact, index) => (
             <div
               key={index}
-              className="bg-[#d8d8d8] shadow-lg rounded-2xl p-8 flex flex-col items-center text-center hover:shadow-xl transition"
+              className="bg-[#d8d8d8] shadow-lg rounded-2xl p-8 mt-13 md:mt-0 flex flex-col items-center text-center hover:shadow-xl transition"
             >
               <div className="mb-4 bg p-7 rounded-full -mt-20">
                 {contact.icon}
@@ -85,7 +85,7 @@ function ConatctUs() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 px-20 py-6 bg-color justify-center items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 md:px-20 py-6 bg-color justify-center items-center">
         <div>
           <EnquiryForm />
         </div>
