@@ -12,7 +12,7 @@ function OurServices() {
   return (
     <div>
       <div
-        className="relative min-h-screen flex items-center justify-center text-center px-6"
+        className="relative h-[70vh] md:min-h-screen flex items-center justify-center text-center px-6"
         style={{
           backgroundImage: `url(${servicesBannerImage})`,
           backgroundRepeat: "no-repeat",
@@ -26,7 +26,7 @@ function OurServices() {
         {/* Content */}
         <div className="relative z-10 max-w-3xl text-white space-y-6">
           <h1 className="text-4xl md:text-6xl font-bold" data-aos="fade-up">
-            Our Features & Services
+            Our Features & <span className="text"> Services</span>
           </h1>
           <p
             className="text-lg md:text-xl leading-relaxed"
@@ -40,7 +40,7 @@ function OurServices() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-20 py-12 bg-color">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-2.5 md:px-20 py-12 bg-color">
         {ourServices.map((item, index) => {
           return (
             <div key={index}
