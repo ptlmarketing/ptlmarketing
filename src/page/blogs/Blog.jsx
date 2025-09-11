@@ -12,7 +12,7 @@ function Blog() {
   return (
     <>
       <div
-        className="relative min-h-screen flex items-center justify-center text-center px-6"
+        className="relative h-[70vh] md:min-h-screen flex items-center justify-center text-center px-6"
         style={{
           backgroundImage: `url(${blogsImage})`,
           backgroundRepeat: "no-repeat",
@@ -38,7 +38,7 @@ function Blog() {
         </div>
       </div>
 
-      <div className="min-h-screen px-20 py-12 bg-color">
+      <div className="min-h-screen px-2.5 md:px-20 py-12 bg-color">
        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogs.map((blog) => (
