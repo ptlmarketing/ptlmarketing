@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../App.css";
 import Sidebar from "../AdminComponents/Sidebar";
 import Header from "../AdminComponents/Header";
 import Dashboard from "../AdminComponents/pages/Dashboard";

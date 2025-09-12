@@ -1,37 +1,134 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import DataTable from "react-data-table-component";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 function Users() {
-  const cards = Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    title: `Card Title ${i + 1}`,
-    description: `This is a description for card ${i + 1}.`,
-    image: `https://picsum.photos/300/200?random=${i + 1}`,
-  }));
+  const [data, setData] = useState([
+    { id: 1, name: "Loading User...", email: "loading@example.com", role: "Loading..." },
+    { id: 2, name: "Loading User...", email: "loading@example.com", role: "Loading..." },
+    { id: 3, name: "Loading User...", email: "loading@example.com", role: "Loading..." },
+    { id: 4, name: "Loading User...", email: "loading@example.com", role: "Loading..." },
+    { id: 5, name: "Loading User...", email: "loading@example.com", role: "Loading..." },
+    { id: 6, name: "Loading User...", email: "loading@example.com", role: "Loading..." },
+  ]);
+  const [loading, setLoading] = useState(true);
+
+  // ✅ GET Users API
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch("/api/users"); 
+      const users = await res.json();
+      setData(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      setLoading(false); 
+    }
+  };
+
+  // ✅ UPDATE Role API
+  const updateUserRole = async (id, newRole) => {
+    try {
+      await fetch(`/api/users/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ role: newRole }),
+      });
+
+      setData((prevData) =>
+        prevData.map((user) =>
+          user.id === id ? { ...user, role: newRole } : user
+        )
+      );
+      alert(`Role updated to ${newRole}`);
+    } catch (error) {
+      console.error("Error updating role:", error);
+    }
+  };
+
+  // ✅ DELETE User API
+  const deleteUser = async (id) => {
+    try {
+      await fetch(`/api/users/${id}`, { method: "DELETE" });
+
+      setData((prevData) => prevData.filter((user) => user.id !== id));
+      alert(`User with ID ${id} deleted`);
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+
+  // ✅ Edit Role (Prompt)
+  const handleEditRole = (id) => {
+    const newRole = prompt("Enter new role (e.g. Admin, User, Editor):");
+    if (newRole) {
+      updateUserRole(id, newRole);
+    }
+  };
+
+  // ✅ Fetch users on mount
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  // ✅ Table columns
+  const columns = [
+    { name: "ID", selector: (row) => row.id, sortable: true, width: "70px" },
+    { name: "User Name", selector: (row) => row.name, sortable: true },
+    { name: "Email ID", selector: (row) => row.email, sortable: true },
+    { name: "Role", selector: (row) => row.role, sortable: true },
+    {
+      name: "Action",
+      cell: (row) => (
+        <div className="flex gap-2">
+          <button
+            onClick={() => handleEditRole(row.id)}
+            className="flex items-center gap-1 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            <FaEdit /> Edit Role
+          </button>
+          <button
+            onClick={() => deleteUser(row.id)}
+            className="flex items-center gap-1 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+          >
+            <FaTrash /> Delete
+          </button>
+        </div>
+      ),
+    },
+  ];
 
   return (
-    <div className="p-4">
+    <div className="p-6">
       <h2 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">
-        20 Sample Cards
+        Users List
       </h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {cards.map((card) => (
-          <div
-            key={card.id}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-          >
-            <img src={card.image} alt={card.title} className="w-full h-40 object-cover" />
-            <div className="p-4">
-              <h3 className="font-semibold text-lg text-gray-800 dark:text-white">
-                {card.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">{card.description}</p>
-              <button className="mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors duration-300">
-                Explore
-              </button>
+      <div className="overflow-x-auto rounded-t-lg border border-gray-200 dark:border-gray-700">
+        <DataTable
+          columns={columns}
+          data={data}
+          pagination
+          highlightOnHover
+          striped
+          progressPending={loading} // ✅ Loading spinner
+          progressComponent={
+            <div className="flex justify-center items-center p-6">
+              <div className="w-8 h-8 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+              <span className="ml-2 text-blue-600">Loading...</span>
             </div>
-          </div>
-        ))}
+          }
+          customStyles={{
+            rows: {
+              style: { backgroundColor: "transparent" },
+            },
+            headCells: {
+              style: { backgroundColor: "transparent", fontWeight: "bold" },
+            },
+            cells: {
+              style: { backgroundColor: "transparent" },
+            },
+          }}
+        />
       </div>
     </div>
   );

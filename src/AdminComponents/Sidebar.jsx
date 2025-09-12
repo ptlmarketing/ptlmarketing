@@ -17,7 +17,7 @@ const navItems = [
   { icon: <FaUser />, label: "User", path: "/admin/users" },
   { icon: <FaEnvelope />, label: "Contact", path: "/admin/contacts" },
   { icon: <FaPlusSquare />, label: "Create Blog", path: "/admin/create-blog" },
-  { icon: <FaEye />, label: "See Blog", path: "/admin/blogs" },
+  { icon: <FaEye />, label: "See Blog", path: "/admin/see-blogs" },
 ];
 
 export default function Sidebar({ isOpen, setIsOpen }) {
