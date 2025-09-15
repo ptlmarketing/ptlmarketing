@@ -52,7 +52,7 @@ const router = createBrowserRouter(
       <Route path="/admin/login" element={<Login />} />
 
       <Route
-        path="/admin"
+        path="/dashboard"
         element={
           // <PrivateRoute>
             <AdminLayout />

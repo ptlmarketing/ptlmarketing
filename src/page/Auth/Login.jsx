@@ -21,12 +21,12 @@ function Login() {
   try {
     const res = await loginUserAPIService(data);
     console.log(res);
-    navigate("/admin");
-
-    // if (res?.success) {
-    // } else {
-    //   alert(res.data.message || "Login failed");
-    // }
+    
+    if (res?.success) {
+      navigate("/dashboard");
+    } else {
+      alert(res.data.message || "Login failed");
+    }
   } catch (error) {
     console.error(error);
     alert(error.response?.data?.message || "Login failed");

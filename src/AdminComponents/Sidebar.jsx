@@ -1,3 +1,4 @@
+// components/Sidebar.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -8,56 +9,63 @@ import {
   FaEye,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/PTL Marketing logo.png";
+import { logoutUserAPIService } from "../service/apiService";
 
-// Updated menu items (with route paths)
 const navItems = [
-  { icon: <FaTachometerAlt />, label: "Dashboard", path: "/admin" },
-  { icon: <FaUser />, label: "User", path: "/admin/users" },
-  { icon: <FaEnvelope />, label: "Contact", path: "/admin/contacts" },
-  { icon: <FaPlusSquare />, label: "Create Blog", path: "/admin/create-blog" },
-  { icon: <FaEye />, label: "See Blog", path: "/admin/see-blogs" },
+  { icon: <FaTachometerAlt />, label: "Dashboard", path: "/dashboard" },
+  { icon: <FaUser />, label: "User", path: "/dashboard/users" },
+  { icon: <FaEnvelope />, label: "Contact", path: "/dashboard/contacts" },
+  { icon: <FaPlusSquare />, label: "Create Blog", path: "/dashboard/create-blog" },
+  { icon: <FaEye />, label: "See Blog", path: "/dashboard/see-blogs" },
 ];
 
 export default function Sidebar({ isOpen, setIsOpen }) {
+  const navigate = useNavigate();
+
+  const logoutUser = async () => {
+    try {
+      await logoutUserAPIService();
+      // Redirect to login page after logout
+      navigate("/admin/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
-    <div className="p-3">
+    <div className="p-2">
       <motion.div
         initial={false}
-        animate={{ width: isOpen ? "4rem" : "16rem" }}
+        animate={{ width: isOpen ? 64 : 240 }} // 4rem / 16rem in px
         transition={{ duration: 0.3 }}
-        className={`flex flex-col text-white z-50 shadow shadow-white rounded-xl ${
-          isOpen
-            ? "relative"
-            : "md:relative fixed md:top-0 md:left-0 top-3 left-3 dark:bg-[#181818]"
-        }`}
-        style={{ height: "calc(100vh - 25px)" }}
+        className={`flex flex-col bg-[#1f1f1f] text-white shadow-lg rounded-xl overflow-hidden`}
+        style={{ height: "calc(100vh - 20px)" }}
       >
-        {/* Top Section */}
-        <div className="p-4 space-y-4 flex-grow">
-          {/* Logo Section */}
-          <div className="flex justify-center">
-            {isOpen ? (
-              <img src={logo} alt="logo" className="w-8 h-8" />
-            ) : (
-              <img src={logo} alt="logo" className="w-18" />
-            )}
-          </div>
+        {/* Logo */}
+        <div className="flex justify-center items-center p-4 border-b border-gray-700">
+          <img
+            src={logo}
+            alt="PTL Marketing"
+            className={isOpen ? "w-8 h-8" : "w-32"}
+          />
+        </div>
 
-          {/* Menu Items */}
-          {navItems.map((item, index) => (
+        {/* Navigation */}
+        <div className="flex flex-col flex-grow p-3 space-y-1">
+          {navItems.map((item, idx) => (
             <Link
-              key={index}
+              key={idx}
               to={item.path}
               onClick={() => setIsOpen(true)}
-              className="flex items-center gap-4 hover:bg-gray-800 p-2 rounded-md cursor-pointer"
+              className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-700 transition-colors duration-200"
             >
-              {item.icon}
+              <span className="text-lg">{item.icon}</span>
               <span
-                className={`${
+                className={`text-sm font-medium ${
                   isOpen ? "hidden" : "inline"
-                } transition-all duration-300`}
+                }`}
               >
                 {item.label}
               </span>
@@ -65,17 +73,17 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           ))}
         </div>
 
-        {/* Logout Button at Bottom */}
-        <div className="p-4 border-t border-gray-700">
+        {/* Logout */}
+        <div className="p-3 border-t border-gray-700">
           <div
-            onClick={() => alert("Logging out...")}
-            className="flex items-center gap-4 text-red-500 hover:bg-red-800 hover:text-white p-2 rounded-md cursor-pointer"
+            onClick={logoutUser}
+            className="flex items-center gap-3 p-2 rounded-md hover:bg-red-600 hover:text-white transition-colors cursor-pointer"
           >
-            <FaSignOutAlt />
+            <FaSignOutAlt className="text-lg text-red-500" />
             <span
-              className={`${
+              className={`text-sm font-medium ${
                 isOpen ? "hidden" : "inline"
-              } transition-all duration-300`}
+              }`}
             >
               Logout
             </span>
