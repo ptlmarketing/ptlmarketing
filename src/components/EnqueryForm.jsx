@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { createEnqueryFormDataAPIService } from "../service/apiService";
+import { toast } from "react-toastify";
+import Loader from "./Loader";
 
 function EnquiryForm() {
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -9,13 +13,19 @@ function EnquiryForm() {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    alert("Enquiry Submitted Successfully!");
-    reset();
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      const res = await createEnqueryFormDataAPIService(data);
+      toast.success(res?.message);
+      reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Something went wrong! Please try again.");
+    }
+    setLoading(false);
   };
 
-  // 20 Services List
   const services = [
     "Search Engine Optimization (SEO)",
     "Pay-Per-Click Advertising (PPC)",
@@ -49,7 +59,6 @@ function EnquiryForm() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Name */}
           <div>
-          
             <input
               type="text"
               {...register("name", { required: "Name is required" })}
@@ -63,7 +72,6 @@ function EnquiryForm() {
 
           {/* Number */}
           <div>
-            
             <input
               type="tel"
               {...register("number", {
@@ -83,7 +91,6 @@ function EnquiryForm() {
 
           {/* Email */}
           <div>
-          
             <input
               type="email"
               {...register("email", {
@@ -103,7 +110,6 @@ function EnquiryForm() {
 
           {/* Service */}
           <div>
-           
             <select
               {...register("service", { required: "Service is required" })}
               className="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-teal-500"
@@ -122,7 +128,6 @@ function EnquiryForm() {
 
           {/* Company Name */}
           <div>
-           
             <input
               type="text"
               {...register("company")}
@@ -133,7 +138,6 @@ function EnquiryForm() {
 
           {/* Budget */}
           <div>
-         
             <input
               type="number"
               {...register("budget")}
@@ -144,7 +148,6 @@ function EnquiryForm() {
 
           {/* Subject */}
           <div>
-            
             <input
               type="text"
               {...register("subject", { required: "Subject is required" })}
@@ -158,7 +161,6 @@ function EnquiryForm() {
 
           {/* Message */}
           <div>
-           
             <textarea
               {...register("message", { required: "Message is required" })}
               rows="4"
@@ -174,9 +176,18 @@ function EnquiryForm() {
           <div className="flex justify-between mt-6">
             <button
               type="submit"
-              className="px-6 py-2 button-color text-white rounded-lg "
+              disabled={loading}
+              className={`py-2 text-white rounded-lg 
+  ${loading ? "cursor-not-allowed px-4 mr-2 bg-gray-700" : "button-color px-6"} 
+`}
             >
-              Submit
+              {loading ? (
+                <span className="flex items-center gap-2">
+                  <Loader /> Submitting...
+                </span>
+              ) : (
+                "Submit"
+              )}
             </button>
             <button
               type="button"

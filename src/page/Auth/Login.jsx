@@ -4,24 +4,37 @@ import { login } from "../../utility/Auth";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Loader from "../../components/Loader";
+import { loginUserAPIService } from "../../service/apiService";
 
 function Login() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); // ✅ Show/Hide password state
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    setLoading(true)
-    // Replace with real API authentication
-    if (data.username === "admin" && data.password === "admin123") {
-      login(); // Save login state
-      navigate("/admin"); // Redirect to admin dashboard
-    } else {
-      alert("Invalid credentials!");
-    }
-    setLoading(false)
-  };
+  const onSubmit = async (data) => {
+  setLoading(true);
+  try {
+    const res = await loginUserAPIService(data);
+    console.log(res);
+    navigate("/admin");
+
+    // if (res?.success) {
+    // } else {
+    //   alert(res.data.message || "Login failed");
+    // }
+  } catch (error) {
+    console.error(error);
+    alert(error.response?.data?.message || "Login failed");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-4">
@@ -37,11 +50,15 @@ function Login() {
             </label>
             <input
               type="text"
-              {...register("username", { required: "Username is required" })}
+              {...register("name", { required: "Username is required" })}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
               placeholder="Enter your username"
             />
-            {errors.username && <span className="text-red-500 text-sm">{errors.username.message}</span>}
+            {errors.name && (
+              <span className="text-red-500 text-sm">
+                {errors.name.message}
+              </span>
+            )}
           </div>
 
           {/* Password */}
@@ -62,7 +79,11 @@ function Login() {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </div>
-            {errors.password && <span className="text-red-500 text-sm">{errors.password.message}</span>}
+            {errors.password && (
+              <span className="text-red-500 text-sm">
+                {errors.password.message}
+              </span>
+            )}
           </div>
 
           <button
@@ -72,18 +93,13 @@ function Login() {
               loading ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
-            {
-                loading ? (
-                    <>
-                    <Loader/> Logging in...
-                    </>
-                ):(
-                    <>
-                    Login
-                    </>
-                )
-            }
-            
+            {loading ? (
+              <>
+                <Loader /> Logging in...
+              </>
+            ) : (
+              <>Login</>
+            )}
           </button>
         </form>
       </div>

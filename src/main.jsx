@@ -1,5 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import "./index.css";
 import App from "./App.jsx";
 import {
@@ -26,7 +28,7 @@ import Contact from "./AdminComponents/pages/Contact.jsx";
 import CreateBlog from "./AdminComponents/pages/CreateBlog.jsx";
 import SeeBlog from "./AdminComponents/pages/SeeBlog.jsx";
 import Login from "./page/Auth/Login.jsx";
-import PrivateRoute from "./utility/PrivateRoute.jsx";
+// import PrivateRoute from "./utility/PrivateRoute.jsx";
 import Loader from "./components/Loader.jsx";
 
 const router = createBrowserRouter(
@@ -37,7 +39,7 @@ const router = createBrowserRouter(
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<OurServices />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogDetails />} />
+        <Route path="/blog/:slug" element={<BlogDetails />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<ConatctUs />} />
         <Route path="/testimonial" element={<Testimonials />} />
@@ -52,9 +54,9 @@ const router = createBrowserRouter(
       <Route
         path="/admin"
         element={
-          <PrivateRoute>
+          // <PrivateRoute>
             <AdminLayout />
-          </PrivateRoute>
+          // </PrivateRoute>
         }
       >
         <Route path="" element={<Dashboard />} />
@@ -69,6 +71,18 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+     <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark" // 'light' | 'dark' | 'colored'
+      />
     <RouterProvider router={router} />
   </StrictMode>
 );
