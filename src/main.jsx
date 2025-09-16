@@ -7,6 +7,7 @@ import App from "./App.jsx";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
 } from "react-router-dom";
@@ -28,7 +29,7 @@ import Contact from "./AdminComponents/pages/Contact.jsx";
 import CreateBlog from "./AdminComponents/pages/CreateBlog.jsx";
 import SeeBlog from "./AdminComponents/pages/SeeBlog.jsx";
 import Login from "./page/Auth/Login.jsx";
-// import PrivateRoute from "./utility/PrivateRoute.jsx";
+import PrivateRoute from "./utility/PrivateRoute.jsx";
 import Loader from "./components/Loader.jsx";
 
 const router = createBrowserRouter(
@@ -49,14 +50,14 @@ const router = createBrowserRouter(
 
       </Route>
 
-      <Route path="/admin/login" element={<Login />} />
+      <Route path="/login" element={localStorage.getItem("authToken") ? <Navigate to="/dashboard" /> : <Login />} />
 
       <Route
         path="/dashboard"
         element={
-          // <PrivateRoute>
+          <PrivateRoute>
             <AdminLayout />
-          // </PrivateRoute>
+          </PrivateRoute>
         }
       >
         <Route path="" element={<Dashboard />} />

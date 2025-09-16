@@ -1,5 +1,3 @@
-// components/Sidebar.jsx
-import React from "react";
 import { motion } from "framer-motion";
 import {
   FaTachometerAlt,
@@ -17,7 +15,11 @@ const navItems = [
   { icon: <FaTachometerAlt />, label: "Dashboard", path: "/dashboard" },
   { icon: <FaUser />, label: "User", path: "/dashboard/users" },
   { icon: <FaEnvelope />, label: "Contact", path: "/dashboard/contacts" },
-  { icon: <FaPlusSquare />, label: "Create Blog", path: "/dashboard/create-blog" },
+  {
+    icon: <FaPlusSquare />,
+    label: "Create Blog",
+    path: "/dashboard/create-blog",
+  },
   { icon: <FaEye />, label: "See Blog", path: "/dashboard/see-blogs" },
 ];
 
@@ -28,7 +30,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     try {
       await logoutUserAPIService();
       // Redirect to login page after logout
-      navigate("/admin/login");
+      localStorage.removeItem("authToken");
+      navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -81,9 +84,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           >
             <FaSignOutAlt className="text-lg text-red-500" />
             <span
-              className={`text-sm font-medium ${
-                isOpen ? "hidden" : "inline"
-              }`}
+              className={`text-sm font-medium ${isOpen ? "hidden" : "inline"}`}
             >
               Logout
             </span>

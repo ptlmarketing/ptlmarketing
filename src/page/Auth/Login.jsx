@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import { loginUserAPIService } from "../../service/apiService";
+import { toast } from "react-toastify";
 
 function Login() {
   const {
@@ -20,15 +21,17 @@ function Login() {
   setLoading(true);
   try {
     const res = await loginUserAPIService(data);
-    console.log(res);
-    
+    // console.log(res?.token);
     if (res?.success) {
+      localStorage.setItem("authToken", res?.token);
+      toast.success(res?.message)
       navigate("/dashboard");
     } else {
       alert(res.data.message || "Login failed");
     }
   } catch (error) {
     console.error(error);
+     toast.success(res?.message)
     alert(error.response?.data?.message || "Login failed");
   } finally {
     setLoading(false);
