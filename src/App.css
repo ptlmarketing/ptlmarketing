@@ -55,3 +55,7 @@ p,li,button{
   scrollbar-width: none;    /* Firefox */
 }
 
+.scrollbar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; 
+}

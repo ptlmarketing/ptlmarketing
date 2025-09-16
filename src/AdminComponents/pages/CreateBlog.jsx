@@ -23,15 +23,8 @@ function CreateBlog() {
 
       const formData = new FormData();
       formData.append("title", data.title);
-      formData.append("author", data.author);
       formData.append("category", data.category);
       formData.append("content", data.content);
-      formData.append("metaTitle", data.metaTitle);
-      formData.append("metaDescription", data.metaDescription);
-      formData.append(
-        "tags",
-        data.tags ? JSON.stringify(data.tags.split(",").map((t) => t.trim())) : "[]"
-      );
       formData.append("published", data.published || false);
       if (data.featuredImage && data.featuredImage[0]) {
         formData.append("featuredImage", data.featuredImage[0]);
@@ -78,19 +71,6 @@ function CreateBlog() {
             />
             {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
           </div>
-
-          {/* Author */}
-          <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-200">Author</label>
-            <input
-              type="text"
-              {...register("author", { required: "Author is required" })}
-              className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-700 text-white border-gray-600 placeholder-gray-400"
-              placeholder="Author name"
-            />
-            {errors.author && <span className="text-red-500 text-sm">{errors.author.message}</span>}
-          </div>
-
           {/* Category */}
           <div className="flex flex-col">
             <label className="mb-1 font-medium text-gray-200">Category</label>
@@ -101,31 +81,7 @@ function CreateBlog() {
               placeholder="Category"
             />
             {errors.category && <span className="text-red-500 text-sm">{errors.category.message}</span>}
-          </div>
-
-          {/* Meta Title */}
-          <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-200">Meta Title</label>
-            <input
-              type="text"
-              {...register("metaTitle", { required: "Meta Title is required" })}
-              className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-700 text-white border-gray-600 placeholder-gray-400"
-              placeholder="Meta title for SEO"
-            />
-            {errors.metaTitle && <span className="text-red-500 text-sm">{errors.metaTitle.message}</span>}
-          </div>
-        </div>
-
-        {/* Meta Description */}
-        <div className="flex flex-col">
-          <label className="mb-1 font-medium text-gray-200">Meta Description</label>
-          <textarea
-            {...register("metaDescription", { required: "Meta Description is required" })}
-            rows="3"
-            className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-700 text-white border-gray-600 placeholder-gray-400"
-            placeholder="Meta description for SEO"
-          ></textarea>
-          {errors.metaDescription && <span className="text-red-500 text-sm">{errors.metaDescription.message}</span>}
+          </div>        
         </div>
 
         {/* Content */}
@@ -139,18 +95,6 @@ function CreateBlog() {
           ></textarea>
           {errors.content && <span className="text-red-500 text-sm">{errors.content.message}</span>}
         </div>
-
-        {/* Tags */}
-        <div className="flex flex-col">
-          <label className="mb-1 font-medium text-gray-200">Tags (comma separated)</label>
-          <input
-            type="text"
-            {...register("tags")}
-            className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-700 text-white border-gray-600 placeholder-gray-400"
-            placeholder="React, Tailwind"
-          />
-        </div>
-
         {/* Featured Image & Published */}
         <div className="grid md:grid-cols-2 gap-6 items-center">
           <div className="flex flex-col">

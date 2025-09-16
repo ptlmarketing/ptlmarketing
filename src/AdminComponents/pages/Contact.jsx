@@ -6,6 +6,7 @@ import {
   deleteEnquiryFormDataAPIService,
 } from "../../service/apiService";
 import Modal from "../Modal";
+import { toast } from "react-toastify";
 
 function Contact() {
   const [contacts, setContacts] = useState([]);
@@ -18,7 +19,8 @@ function Contact() {
   const getEnquiryFormData = async () => {
     try {
       const res = await getEnquiryFormDataAPIService();
-      setContacts(res?.data || []);
+      const enquiries = res?.data || [];
+      setContacts(enquiries.reverse());
     } catch (error) {
       console.error("Error fetching contacts:", error);
     } finally {
@@ -26,14 +28,15 @@ function Contact() {
     }
   };
 
-  // Delete contact
   const deleteContact = async (id) => {
     if (window.confirm("Are you sure you want to delete this contact?")) {
       try {
-        await deleteEnquiryFormDataAPIService(id);
+        const res = await deleteEnquiryFormDataAPIService(id);
         setContacts((prev) => prev.filter((c) => c._id !== id));
+        toast.success(res?.message);
       } catch (error) {
         console.error("Error deleting contact:", error);
+        toast.error("Failed to delete contact. Please try again!");
       }
     }
   };
@@ -61,8 +64,18 @@ function Contact() {
 
   // Columns
   const columns = [
-    { name: "No.", selector: (row, index) => index + 1, sortable: true, width: "70px" },
-    { name: "Name", selector: (row) => row.name, sortable: true, width: "140px" },
+    {
+      name: "No.",
+      selector: (row, index) => index + 1,
+      sortable: true,
+      width: "70px",
+    },
+    {
+      name: "Name",
+      selector: (row) => row.name,
+      sortable: true,
+      width: "140px",
+    },
     { name: "Phone", selector: (row) => row.number, width: "160px" },
     { name: "Email", selector: (row) => row.email, width: "200px" },
     { name: "Service", selector: (row) => row.service, width: "160px" },

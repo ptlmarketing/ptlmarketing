@@ -33,7 +33,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
       // Redirect to login page after logout
       localStorage.removeItem("authToken");
       toast.success(res?.message)
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }

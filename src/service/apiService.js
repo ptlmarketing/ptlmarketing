@@ -63,3 +63,20 @@ export const createBlogPostAPIService = async (formData) => {
   });
   return res.data;
 };
+
+// Delete Blog
+export const deleteBlogPostAPIService=async(id)=>{
+  const res=await api.delete(`/delete-blog/${id}`)
+  return res.data
+}
+// Update Blog
+export const updateBlogPostAPIService=async(id,data)=>{
+   const res = await api.put(`/update-blog/${id}`, data);
+  return res.data;
+}
+
+// Dashboard Data
+export const dashboardDataAPIService=async()=>{
+  const res=await api.get('/dashboard')
+  return res.data
+}

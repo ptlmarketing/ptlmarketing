@@ -4,7 +4,7 @@ import { createEnqueryFormDataAPIService } from "../service/apiService";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
 
-function EnquiryForm() {
+function EnquiryForm({ onSuccess }) {
   const [loading, setLoading] = useState(false);
   const {
     register,
@@ -18,6 +18,7 @@ function EnquiryForm() {
       setLoading(true);
       const res = await createEnqueryFormDataAPIService(data);
       toast.success(res?.message);
+      onSuccess()
       reset();
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -47,6 +48,7 @@ function EnquiryForm() {
     "Analytics & Performance Tracking",
     "Cloud & Hosting Solutions",
     "Software Development Services",
+    "Other"
   ];
 
   return (
@@ -130,7 +132,7 @@ function EnquiryForm() {
           <div>
             <input
               type="text"
-              {...register("company")}
+              {...register("companyName")}
               className="w-full mt-1 p-2 border rounded-lg focus:ring-2 focus:ring-teal-500"
               placeholder="Enter company name"
             />
