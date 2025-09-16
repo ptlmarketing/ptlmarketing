@@ -9,7 +9,7 @@ export default function Header({ toggleSidebar }) {
         <FaBars />
       </button>
       {/* Hamburger only on mobile */}
-      <h1 className="text-lg font-semibold text-gray-700 dark:text-white">YouTube Studio</h1>
+      <h1 className="text-lg font-semibold text-gray-700 dark:text-white">Admin</h1>
       <button onClick={toggleSidebar} className="text-xl md:hidden text-white cursor-pointer">
         <FaBars />
       </button>

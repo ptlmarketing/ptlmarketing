@@ -10,6 +10,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/PTL Marketing logo.png";
 import { logoutUserAPIService } from "../service/apiService";
+import { toast } from "react-toastify";
 
 const navItems = [
   { icon: <FaTachometerAlt />, label: "Dashboard", path: "/dashboard" },
@@ -28,9 +29,10 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
   const logoutUser = async () => {
     try {
-      await logoutUserAPIService();
+    const res=  await logoutUserAPIService();
       // Redirect to login page after logout
       localStorage.removeItem("authToken");
+      toast.success(res?.message)
       navigate("/login");
     } catch (error) {
       console.error("Logout failed:", error);

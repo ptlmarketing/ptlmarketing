@@ -6,6 +6,19 @@ export const loginUserAPIService = async (data) => {
   return res.data;
 };
 
+// Logout User
+export const logoutUserAPIService = async () => {
+  const res = await api.post("/user-logout");
+  return res.data;
+};
+
+// Get All User
+
+export const getAllUser = async () => {
+  const res = await api.get("/user");
+  return res.data;
+};
+
 // Get all blogs
 export const getBlogsAPIService = async () => {
   const res = await api.get("/get-blog");
@@ -42,8 +55,11 @@ export const deleteEnquiryFormDataAPIService = async (id) => {
   return res.data;
 };
 
-// Logout User
-export const logoutUserAPIService=async()=>{
-  const res=await api.post('/user-logout')
-  return res.data
-}
+// // Create blog Post
+export const createBlogPostAPIService = async (formData) => {
+  const res = await api.post("/create-blog", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+    withCredentials: true,
+  });
+  return res.data;
+};
