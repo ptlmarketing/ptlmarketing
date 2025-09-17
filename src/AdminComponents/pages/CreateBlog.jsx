@@ -30,7 +30,6 @@ function CreateBlog() {
       }
 
       const res = await createBlogPostAPIService(formData);
-      console.log("Blog created:", res);
       toast.success("Blog created successfully!");
       reset();
     } catch (error) {

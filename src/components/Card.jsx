@@ -10,7 +10,7 @@ function Card({ image, heading, paragraph }) {
       {/* Content */}
       <div className="p-5 text-center">
         <h2 className="text-xl text font-semibold mb-2">{heading}</h2>
-        <p className="text-gray-600 mb-5">{paragraph}</p>
+        <p className="text-gray-600 mb-5 line-clamp-3">{paragraph}</p>
         <GetQuotationButton title="Get Quotation"/>
       </div>
     </div>

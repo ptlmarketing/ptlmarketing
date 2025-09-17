@@ -53,7 +53,7 @@ function SeeBlog() {
     try {
       setLoading(true);
       const res = await deleteBlogPostAPIService(id);
-      if (res?.message) {
+      if (res?.success) {
         toast.success(res.message);
         setBlogs((prev) => prev.filter((blog) => blog.id !== id));
       } else {

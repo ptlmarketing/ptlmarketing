@@ -20,8 +20,10 @@ export const getAllUser = async () => {
 };
 
 // Get all blogs
-export const getBlogsAPIService = async () => {
-  const res = await api.get("/get-blog");
+export const getBlogsAPIService = async (page = 1, limit = 12) => {
+  const res = await api.get("/get-blog", {
+    params: { page, limit },
+  });
   return res.data;
 };
 
@@ -65,18 +67,18 @@ export const createBlogPostAPIService = async (formData) => {
 };
 
 // Delete Blog
-export const deleteBlogPostAPIService=async(id)=>{
-  const res=await api.delete(`/delete-blog/${id}`)
-  return res.data
-}
-// Update Blog
-export const updateBlogPostAPIService=async(id,data)=>{
-   const res = await api.put(`/update-blog/${id}`, data);
+export const deleteBlogPostAPIService = async (id) => {
+  const res = await api.delete(`/delete-blog/${id}`);
   return res.data;
-}
+};
+// Update Blog
+export const updateBlogPostAPIService = async (id, data) => {
+  const res = await api.put(`/update-blog/${id}`, data);
+  return res.data;
+};
 
 // Dashboard Data
-export const dashboardDataAPIService=async()=>{
-  const res=await api.get('/dashboard')
-  return res.data
-}
+export const dashboardDataAPIService = async () => {
+  const res = await api.get("/dashboard");
+  return res.data;
+};

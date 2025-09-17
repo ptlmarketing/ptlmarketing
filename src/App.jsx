@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { useEffect } from "react";
+import FloatingSocialMedia from "./components/FloatingSocialMedia";
 
 function App() {
    const location = useLocation();
@@ -16,6 +17,7 @@ function App() {
   return (
     <>
       <Header />
+      <FloatingSocialMedia/>
       <Outlet />
       <Footer />
     </>
