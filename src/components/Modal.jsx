@@ -12,7 +12,7 @@ function Modal({ isOpen, onClose, children }) {
     >
       <div
         onClick={(e) => e.stopPropagation()} // modal ke andar click se close na ho
-        className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-[50%] relative"
+        className="bg-white md:p-6 rounded-lg shadow-lg w-[90%] md:max-w-[50%] relative"
       >
         <button
           onClick={onClose}

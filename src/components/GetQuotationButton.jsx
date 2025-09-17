@@ -16,7 +16,7 @@ function GetQuotationButton({ title }) {
       </button>
 
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <div className="pt-28">
+        <div className=" pt-62 md:pt-28">
           <EnquiryForm onSuccess={handleClose}/>
         </div>
       </Modal>
