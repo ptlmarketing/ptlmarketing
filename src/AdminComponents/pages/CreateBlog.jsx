@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createBlogPostAPIService } from "../../service/apiService";
 import Loader from "../../components/Loader";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 function CreateBlog() {
   const {
@@ -44,13 +43,6 @@ function CreateBlog() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br ">
-      <ToastContainer position="top-right" autoClose={3000} />
-      {loading && (
-        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
-          <Loader size={50} />
-        </div>
-      )}
-
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-gray-800/90 backdrop-blur-md shadow-xl rounded-2xl p-8 w-full max-w-3xl space-y-6 border border-gray-700"
@@ -69,7 +61,11 @@ function CreateBlog() {
               className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-700 text-white border-gray-600 placeholder-gray-400"
               placeholder="Enter blog title"
             />
-            {errors.title && <span className="text-red-500 text-sm">{errors.title.message}</span>}
+            {errors.title && (
+              <span className="text-red-500 text-sm">
+                {errors.title.message}
+              </span>
+            )}
           </div>
           {/* Category */}
           <div className="flex flex-col">
@@ -80,8 +76,12 @@ function CreateBlog() {
               className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-700 text-white border-gray-600 placeholder-gray-400"
               placeholder="Category"
             />
-            {errors.category && <span className="text-red-500 text-sm">{errors.category.message}</span>}
-          </div>        
+            {errors.category && (
+              <span className="text-red-500 text-sm">
+                {errors.category.message}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Content */}
@@ -93,20 +93,37 @@ function CreateBlog() {
             className="border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none bg-gray-700 text-white border-gray-600 placeholder-gray-400"
             placeholder="Write your blog content here..."
           ></textarea>
-          {errors.content && <span className="text-red-500 text-sm">{errors.content.message}</span>}
+          {errors.content && (
+            <span className="text-red-500 text-sm">
+              {errors.content.message}
+            </span>
+          )}
         </div>
         {/* Featured Image & Published */}
         <div className="grid md:grid-cols-2 gap-6 items-center">
           <div className="flex flex-col">
-            <label className="mb-1 font-medium text-gray-200">Featured Image</label>
-            <input type="file" {...register("featuredImage")} accept="image/*" className="text-gray-200" />
+            <label className="mb-1 font-medium text-gray-200">
+              Featured Image
+            </label>
+            <input
+              type="file"
+              {...register("featuredImage")}
+              accept="image/*"
+              className="text-gray-200"
+            />
             {selectedImage && selectedImage.length > 0 && (
-              <p className="text-sm mt-1 text-gray-300">{selectedImage[0].name}</p>
+              <p className="text-sm mt-1 text-gray-300">
+                {selectedImage[0].name}
+              </p>
             )}
           </div>
 
           <div className="flex items-center gap-2">
-            <input type="checkbox" {...register("published")} className="w-4 h-4 accent-blue-500" />
+            <input
+              type="checkbox"
+              {...register("published")}
+              className="w-4 h-4 accent-blue-500"
+            />
             <label className="font-medium text-gray-200">Published</label>
           </div>
         </div>
@@ -114,9 +131,21 @@ function CreateBlog() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#F97316] text-white py-3 rounded-xl cursor-pointer hover:bg-[#d15d0a] transition-all font-semibold"
+          className={`w-full flex justify-center items-center gap-2 py-3 rounded-xl font-semibold transition-all 
+    ${
+      loading
+        ? "bg-gray-400 cursor-not-allowed"
+        : "bg-[#F97316] hover:bg-[#d15d0a] text-white cursor-pointer"
+    }`}
         >
-          {loading ? <Loader /> : "Publish Blog"}
+          {loading ? (
+            <>
+              <Loader />
+              <span>Blog Publishing...</span>
+            </>
+          ) : (
+            "Publish Blog"
+          )}
         </button>
       </form>
     </div>
