@@ -30,7 +30,6 @@ import CreateBlog from "./AdminComponents/pages/CreateBlog.jsx";
 import SeeBlog from "./AdminComponents/pages/SeeBlog.jsx";
 import Login from "./page/Auth/Login.jsx";
 import PrivateRoute from "./utility/PrivateRoute.jsx";
-import Loader from "./components/Loader.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
