@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import FloatingSocialMedia from "./components/FloatingSocialMedia";
 
 function App() {
+  
    const location = useLocation();
 
   useEffect(() => {
