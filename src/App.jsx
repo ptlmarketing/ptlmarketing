@@ -6,8 +6,7 @@ import { useEffect } from "react";
 import FloatingSocialMedia from "./components/FloatingSocialMedia";
 
 function App() {
-  
-   const location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     window.scrollTo({
@@ -18,7 +17,7 @@ function App() {
   return (
     <>
       <Header />
-      <FloatingSocialMedia/>
+      <FloatingSocialMedia />
       <Outlet />
       <Footer />
     </>
