@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const navLinks = [
-    { name: "Home", to: "/" },
+    { name: "Home At", to: "/" },
     { name: "About", to: "/about" },
     { name: "Services", to: "/services" },
     { name: "Blog", to: "/blog" },
