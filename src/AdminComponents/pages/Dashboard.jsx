@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   FaUsers,
   FaEnvelope,
@@ -22,7 +23,7 @@ export default function Dashboard() {
       try {
         const res = await dashboardDataAPIService();
         if (res?.success) {
-          setDashboardData(res.data); 
+          setDashboardData(res.data);
         }
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
@@ -37,31 +38,37 @@ export default function Dashboard() {
       title: "Total Enquiries",
       value: dashboardData.totalContacts,
       icon: <FaEnvelope className="w-8 h-8 text-blue-500" />,
+      link: "/dashboard/contacts",
     },
     {
       title: "Total Users",
       value: dashboardData.totalUsers,
       icon: <FaUsers className="w-8 h-8 text-green-500" />,
+      link: "/dashboard/users",
     },
     {
       title: "Total Blogs",
       value: dashboardData.totalBlogs,
       icon: <FaBlog className="w-8 h-8 text-purple-500" />,
+      link: "/dashboard/see-blogs",
     },
     {
       title: "Total Reviews",
-      value: 320, // API me ho to isko bhi dynamic kar dena
+      value: 320,
       icon: <FaStar className="w-8 h-8 text-yellow-500" />,
+      link: "#",
     },
     {
       title: "Total Revenue",
-      value: "₹1,25,000", // future me API se laa sakte ho
+      value: "₹1,25,000",
       icon: <FaRupeeSign className="w-8 h-8 text-pink-500" />,
+      link: "#",
     },
     {
       title: "Active Services",
-      value: 12, // API me ho to ye bhi laa lena
+      value: 12,
       icon: <FaBriefcase className="w-8 h-8 text-teal-500" />,
+      link: "#",
     },
   ];
 
@@ -82,15 +89,20 @@ export default function Dashboard() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: index * 0.2 }}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-5 flex items-center space-x-4 hover:shadow-xl transition"
           >
-            <div className="p-3 rounded-full bg-gray-100 dark:bg-gray-700">
-              {stat.icon}
-            </div>
-            <div>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">{stat.title}</p>
-              <h3 className="text-2xl font-bold">{stat.value}</h3>
-            </div>
+            <Link
+              to={stat.link}
+              className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-5 flex items-center space-x-4 
+                         hover:shadow-xl hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+            >
+              <div className="p-3 rounded-full bg-gray-100 dark:bg-gray-700">
+                {stat.icon}
+              </div>
+              <div>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">{stat.title}</p>
+                <h3 className="text-2xl font-bold">{stat.value}</h3>
+              </div>
+            </Link>
           </motion.div>
         ))}
       </div>
