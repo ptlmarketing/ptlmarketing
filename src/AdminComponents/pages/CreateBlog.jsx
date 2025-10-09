@@ -115,6 +115,11 @@ function CreateBlog() {
                 {selectedImage[0].name}
               </p>
             )}
+
+            {/* ✅ Supported file types info */}
+            <p className="text-xs text-gray-400 mt-1 italic">
+              Supported formats: JPEG, JPG, PNG, GIF
+            </p>
           </div>
 
           <div className="flex items-center gap-2">
