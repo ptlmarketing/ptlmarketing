@@ -18,7 +18,7 @@ function EnquiryForm({ onSuccess }) {
       setLoading(true);
       const res = await createEnqueryFormDataAPIService(data);
       toast.success(res?.message);
-      onSuccess()
+      // onSuccess()
       reset();
     } catch (error) {
       toast.error(error.message);
