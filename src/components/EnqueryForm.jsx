@@ -21,8 +21,7 @@ function EnquiryForm({ onSuccess }) {
       onSuccess()
       reset();
     } catch (error) {
-      console.error("Error submitting form:", error);
-      toast.error("Something went wrong! Please try again.");
+      toast.error(error.message);
     }
     setLoading(false);
   };
