@@ -30,6 +30,8 @@ import CreateBlog from "./AdminComponents/pages/CreateBlog.jsx";
 import SeeBlog from "./AdminComponents/pages/SeeBlog.jsx";
 import Login from "./page/Auth/Login.jsx";
 import PrivateRoute from "./utility/PrivateRoute.jsx";
+import CaseStudies from "./page/caseStudies/CaseStudies.jsx";
+import CaseStudiesDetails from "./page/caseStudies/CaseStudiesDetails.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +47,8 @@ const router = createBrowserRouter(
         <Route path="/testimonial" element={<Testimonials />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/case-studies" element={<CaseStudies/>}/>
+        <Route path="/case-study/:slug" element={<CaseStudiesDetails/>}/>
         <Route path="*" element={<NotFound />} />
 
       </Route>

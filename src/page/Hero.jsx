@@ -12,7 +12,7 @@ import boost from "../assets/boost.png";
 import coding from "../assets/coding.png";
 import connection from "../assets/connection.png";
 import About from "../components/About";
-import aboutImage from "../assets/circle image.png";
+import aboutImage from "../assets/Off-Page.webp";
 import GetQuotationButton from "../components/GetQuotationButton";
 import ServiceCardOnHone from "../components/ServiceCardOnHome";
 import { projectProfileData, servicesDataOnHome } from "./AllServicesDataHere";
